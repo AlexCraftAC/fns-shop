@@ -1,0 +1,497 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>FN Update</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<script src="/cdn-cgi/apps/head/m4QAXrO4vK27hJUkLPTaDCWC69g.js"></script><link rel='icon' type='image/png' href='favicon-32x32.png' sizes='32x32' />
+<link rel='icon' type='image/png' href='favicon-16x16.png' sizes='16x16' />
+<style type="text/css">
+            @font-face {
+                font-family: "Shop-Font";
+                src: url("https://static.wixstatic.com/ufonts/ceea6c_c9a86a2a3ce542d187ecd54fba5005c2/woff/file.woff") format("woff"),
+                     url("https://static.wixstatic.com/ufonts/ceea6c_c9a86a2a3ce542d187ecd54fba5005c2/woff2/file.woff2") format("woff2"),
+                     url("https://static.wixstatic.com/ufonts/ceea6c_c9a86a2a3ce542d187ecd54fba5005c2/ttf/file.ttf") format("ttf");
+                font-display: block;
+            }
+
+            body {
+                background-color: transparent;
+            }
+
+            .fnshop {
+                font-family: "Shop-Font", Arial, Sans-Serif;
+                color: white;
+                text-align: center;
+            }
+
+            #fnshop-table th {
+                font-size: 3em;
+                font-weight: normal;
+                text-shadow: rgba(0, 0, 0, 0.8) 0px 0px 15px;
+            }
+
+            #fnshop-table {
+                empty-cells: hide;
+                margin-right: auto;
+                margin-left: auto;
+            }
+
+            #fnshop-body img,
+            #fnshop-body .fnshop-filler {
+                width: 250px;
+            }
+
+            #fnshop-body {
+                font-size: 2em;
+            }
+
+            .fnshop-header {
+                font-size: 1.6em;
+                background-color: #00000075;
+                border-radius: 7px;
+                padding: 5px 10px 5px 10px;
+            }
+            .fnshop-header:hover {
+                background-color: #00000085;
+                box-shadow: 0 5px 10px #0000002f;
+            }
+
+            #fnshop-body td:nth-child(2)
+             {
+                padding-right: 15px;
+            }
+
+            #fnshop-body td:nth-child(3)
+             {
+                padding-left: 15px;
+            }
+
+            #fnshop-body td {
+                height: 255px;
+                width: 255px;
+                padding: 7px;
+            }
+            #fnshop-body .inner {
+                transition: all .2s ease-in-out;
+                cursor: pointer;
+            }
+            #fnshop-body .inner:hover {
+                transform: scale(1.05);
+                box-shadow: 0px 10px 10px #00000065;
+            }
+            sup{
+                font-size: 0.5em;
+            }
+
+
+            .fnshop-modal {
+                display: block;
+                position: fixed;
+                left: 0;
+                top: 0;
+                z-index: 420;
+                width: 100%;
+                height: 100%;
+                background-color: rgba(0, 0, 0, 0.4);
+                -webkit-transition: all .3s ease-in-out;
+                overflow: hidden;
+                transition: all .3s ease-in-out;
+                display:flex;
+                justify-content:center;
+                align-items:center;
+            }
+
+            .fnshop-modal-container{
+                display:flex;
+                justify-content:center;
+                align-items:center;
+            }
+
+            .fnshop-modal-content {
+                display: inline-block;
+                margin: auto;
+                border-radius: 4px;
+                background-repeat: no-repeat;
+                background-size: cover;
+                height: 512px;
+                width: 512px;
+                transition: all 0.3s ease-in-out;
+            }
+
+            .fnshop-hidden { display: none; }
+
+            .fnshop-visually-hidden { opacity: 0; }
+            .fnshop-close-modal {
+                color: white;
+                float: right;
+                position: relative;
+                right: 1em;
+                top: .9em;
+                padding: 4px;
+                display:flex;
+                justify-content:center;
+                align-items:center;
+                cursor: pointer;
+            }
+            .fnshop-close-modal svg{
+                width: 24px;
+                height: 24px;
+            }
+            .fnshop-blurred {
+                filter: blur(2px);
+                -webkit-filter: blur(2px);
+            }
+            .container {
+                perspective: 15px;
+            }
+
+            .inner {
+                transition: all .2s ease-out;
+                box-shadow: 2px 2px 50px rgba(0, 0, 0, 0.2);
+                background-repeat: no-repeat;
+                background-size: cover;
+            }
+            .container, .inner{
+                height: 256px;
+                width: 256px;
+            }
+            .fnshop-modal-cursor {
+                position: absolute;
+                width: 512px;
+                height: 512px;
+            }
+            .fnshop-modal-content:hover {
+                box-shadow: 0px 0px 15px black;
+            }
+
+        </style>
+</head>
+<body>
+<div class="fnshop" id="non-modal">
+<table id="fnshop-table">
+<thead>
+<tr>
+<td colspan="2">
+<span class="fnshop-header fnshop-date-container">
+<span id="fnshop-date">LOADING...</span>
+</span>
+</td>
+<td colspan="2">
+<span class="fnshop-header fnshop-countdown-container">
+NEXT ITEM SHOP: <span id="fnshop-countdown">LOADING...</span>
+</span>
+</td>
+</tr>
+<tr>
+<th colspan="2">FEATURED</th>
+<th colspan="2">DAILY</th>
+</tr>
+</thead>
+<tbody id="fnshop-body">
+<tr>
+<td colspan="4">LOADING...</td>
+</tr>
+<tr>
+<td class="fnshop-filler"></td>
+<td class="fnshop-filler"></td>
+<td class="fnshop-filler"></td>
+<td class="fnshop-filler"></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div id="fnshop-modal" class="fnshop-modal fnshop-hidden">
+<div class="fnshop-modal-container" id="fnshop-modal-container">
+<div class="fnshop-modal-content" id="fnshop-modal-content">
+<div class="fnshop-modal-cursor"></div>
+<span id="fnshop-close-modal" class="fnshop-close-modal" style="width: 24px;height: 24px;">
+<svg viewBox="0 0 16 16" version="1.1" xmlns="http://www.w3.org/2000/svg">
+<line style="stroke:white;stroke-width:1.5" y2="4.5" x2="11.5" y1="11.5" x1="4.5" />
+<line style="stroke:white;stroke-width:1.5" y2="11.5" x2="11.5" y1="4.5" x1="4.5" />
+<circle style="fill:none;stroke:white;stroke-width:2" r="7" cy="8" cx="8" />
+</svg>
+</span>
+</div>
+</div>
+</div>
+<script type="text/javascript" async>
+            function startShop()
+            {
+                window.shopBody = document.getElementById("fnshop-body");
+                window.lastUpdate = 0;
+                let date = new Date();
+                date.setUTCHours(0, 0, 0, 0);
+                window.countdownDate = date.getTime() + 1000 * 60 * 60 * 24;
+                window.countdownElement = document.getElementById("fnshop-countdown");
+                window.dateElement = document.getElementById("fnshop-date");
+                startCountdown();
+                setShop();
+                setInterval(setShop, 10 * 60 * 1000);
+            }
+
+            function setShop()
+            {
+                let oReq = new XMLHttpRequest();
+                oReq.addEventListener("load", setShopReq);
+                oReq.open("GET", "https://coolapis.ga/shop.php");
+                oReq.send();
+            }
+
+            function setShopReq()
+            {
+                let shop = JSON.parse(this.responseText);
+                window.dateElement.innerHTML = formatDate(new Date(shop.date));
+                for (let c = window.shopBody.firstChild; c !== null; c = window.shopBody.firstChild)
+                {
+                    window.shopBody.removeChild(c);
+                }
+                let featuredCount = 0;
+                let dailyCount = 0;
+                shop.shop.sort(function(a,b) {return rarityNum(b)-rarityNum(a);}).forEach(function(item)
+                {
+                    let row, rowInd;
+                    if (item.featured)
+                    {
+                        if (Math.floor(featuredCount / 2) < window.shopBody.childNodes.length)
+                        {
+                            row = window.shopBody.childNodes[Math.floor(featuredCount / 2)];
+                            rowInd = featuredCount % 2;
+                        }
+                        else
+                        {
+                            row = document.createElement('tr');
+                            row.appendChild(document.createElement('td'));
+                            row.appendChild(document.createElement('td'));
+                            row.appendChild(document.createElement('td'));
+                            row.appendChild(document.createElement('td'));
+                            window.shopBody.appendChild(row);
+                            rowInd = 0;
+                        }
+                        featuredCount++;
+                    }
+                    else
+                    {
+                        if (Math.floor(dailyCount / 2) < window.shopBody.childNodes.length)
+                        {
+                            row = window.shopBody.childNodes[Math.floor(dailyCount / 2)];
+                            rowInd = dailyCount % 2 + 2;
+                        }
+                        else
+                        {
+                            row = document.createElement('tr');
+                            row.appendChild(document.createElement('td'));
+                            row.appendChild(document.createElement('td'));
+                            row.appendChild(document.createElement('td'));
+                            row.appendChild(document.createElement('td'));
+                            window.shopBody.appendChild(row);
+                            rowInd = 2;
+                        }
+                        dailyCount++;
+                    }
+                    let _container = document.createElement('div');
+                    _container.className = "container";
+                    let _inner = document.createElement('div');
+                    _inner.className = "inner";
+                    _inner.style.backgroundImage='url("' + item.item.gallery + '?")';
+                    _container.appendChild(_inner);
+                    row.childNodes[rowInd].appendChild(_container);
+                    new Wiggler(_container, _inner);
+                    registerItem(_inner);
+                });
+            }
+
+            function startCountdown()
+            {
+                return setInterval(function()
+                {
+                    let distance = window.countdownDate - new Date().getTime();
+                    let hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                    let minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+                    let seconds = Math.floor((distance % (1000 * 60)) / 1000);
+                    window.countdownElement.innerHTML = hours + "H " +
+                        minutes + "M " + seconds + "S ";
+                    if (distance < 0)
+                    {
+                        window.countdownElement.innerHTML = "reloading...";
+                        setShop();
+                        window.countdownDate += 1000 * 60 * 60 * 24;
+                    }
+                }, 1000);
+            }
+
+            function formatDate(date) {
+                var monthNames = [
+                    "JANUARY", "FEBRUARY", "MARCH",
+                    "APRIL", "MAY", "JUNE", "JULY",
+                    "AUGUST", "SEPTEMBER", "OCTOBER",
+                    "NOVEMBER", "DECEMBER"
+                ];
+
+                var day = date.getUTCDate();
+                var monthIndex = date.getUTCMonth();
+                var year = date.getUTCFullYear();
+
+                return monthNames[monthIndex] + ' ' + day + "<sup>"+ordinal_suffix_of(day) + '</sup> ' + year;
+            }
+
+            function ordinal_suffix_of(i) {
+                var j = i % 10,
+                    k = i % 100;
+                if (j == 1 && k != 11) {
+                    return "st";
+                }
+                if (j == 2 && k != 12) {
+                    return "nd";
+                }
+                if (j == 3 && k != 13) {
+                    return "rd";
+                }
+                return "th";
+            }
+
+            function rarityNum(rarity) {
+                return ["common", "uncommon", "rare", "epic", "legendary"].indexOf(rarity.item.rarity);
+            }
+            startShop();
+
+
+            var modal = document.getElementById('fnshop-modal');
+            var bodyContainer = document.getElementById('non-modal');
+            document.getElementById("fnshop-close-modal").onclick = function() {
+                closeModal();
+            }
+
+            window.onclick = function(event) {
+                if (event.target == document.getElementById("fnshop-modal-container") || event.target == modal) {
+                    closeModal();
+                }
+            }
+
+            function registerItem(item){
+                item.onclick = openModal(item.style.backgroundImage);
+            }
+
+            var modalImg = document.getElementById("fnshop-modal-content");
+            function openModal(background){
+                return function(){
+                    modalImg.style.backgroundImage = background;
+                    modal.className = "fnshop-modal fnshop-visually-hidden";
+                    setTimeout(function() {
+                      bodyContainer.className += " fnshop-blurred";
+                      modal.className = "fnshop-modal";
+                    }, 100);
+                    bodyContainer.parentElement.className = "fnshop-modalOpen";
+                };
+            }
+
+            function closeModal(){
+                modal.className = "fnshop-modal fnshop-visually-hidden";
+                bodyContainer.className = "fnshop";
+                bodyContainer.parentElement.className = "";
+                setTimeout(function(){
+                    modal.className = "fnshop-modal fnshop-hidden";
+                }, 300);
+            }
+
+            class Mouse {
+                constructor() {
+                    this._x = 0;
+                    this._y = 0;
+                    this.x = 0;
+                    this.y = 0;
+                }
+                updatePosition(event) {
+                  var e = event || window.event;
+                  this.x = e.clientX - this._x;
+                  this.y = -e.clientY + this._y;
+                }
+                setOrigin(e) {
+                  var offsetLeft = e.offsetLeft;
+                  var offsetParent = e.offsetParent;
+                  while (offsetParent){
+                    offsetLeft += offsetParent.offsetLeft;
+                    offsetParent = offsetParent.offsetParent;
+                  }
+                  var offsetTop = e.offsetTop;
+                  offsetParent = e.offsetParent;
+                  while (offsetParent){
+                    offsetTop += offsetParent.offsetTop;
+                    offsetParent = offsetParent.offsetParent;
+                  }
+                  this._x = offsetLeft + Math.floor(e.offsetWidth / 2);
+                  this._y = offsetTop + Math.floor(e.offsetHeight / 2);
+                  //alert(offsetTop);
+                }
+                show() {
+                  return "(" + this.x + ", " + this.y + ")";
+                }
+            }
+
+            class Wiggler {
+                constructor(container, inner, isModal = false, refreshRate = 3){
+                    this.container = container;
+                    this.inner = inner;
+                    this.isModal = isModal;
+                    this.mouse = new Mouse();
+                    this.mouse.setOrigin(this.container);
+                    this.counter = 0;
+                    this.refreshRate = refreshRate;
+                    this.container.wiggler = this;
+                    this.container.onmousemove = this.onMouseMoveHandler;
+                    this.container.onmouseleave = this.onMouseLeaveHandler;
+                    this.container.onmouseenter = this.onMouseEnterHandler;
+                };
+                isTimeToUpdate() {
+                    return this.counter++ % this.refreshRate === 0;
+                };
+                onMouseEnterHandler(event) {
+                    this.wiggler.updateMouse();
+                    this.wiggler.update(event);
+                };
+                onMouseLeaveHandler() {
+                    if (!this.wiggler.isModal){
+                        this.wiggler.inner.style.transform = "";
+                        this.wiggler.inner.style.webkitTransform = "";
+                        this.wiggler.inner.style.mozTranform = "";
+                        this.wiggler.inner.style.msTransform = "";
+                        this.wiggler.inner.style.oTransform = "";
+                    }
+                    else{
+                        this.wiggler.inner.childNodes[1].style.background = null;
+                    }
+                };
+                onMouseMoveHandler(event) {
+                    if (this.wiggler.isTimeToUpdate()) {
+                        this.wiggler.update(event);
+                    }
+                };
+                update(event) {
+                    this.mouse.updatePosition(event);
+                    this.updateStyle();
+                };
+                updateStyle() {
+                    if (!this.isModal) {
+                        var style = "rotateX(" + ((this.mouse.y - window.pageYOffset) / this.inner.offsetHeight / 2).toFixed(2) + "deg) rotateY(" + (this.mouse.x / this.inner.offsetWidth / 2).toFixed(2) + "deg)";
+                        this.inner.style.transform = style;
+                        this.inner.style.webkitTransform = style;
+                        this.inner.style.mozTranform = style;
+                        this.inner.style.msTransform = style;
+                        this.inner.style.oTransform = style;
+                    }
+                    else {
+                        var gradY = (1-(this.mouse.y / this.inner.offsetHeight)-0.5)*100;
+                        var gradX = ((this.mouse.x / this.inner.offsetWidth)+0.5)*100;
+                        this.inner.childNodes[1].style.background = 'radial-gradient(circle at ' + gradX + '% ' + gradY + '%, #ffffff5f, transparent 60px)';
+                    }
+                };
+                updateMouse(){
+                    this.mouse.setOrigin(this.container);
+                }
+            }
+            new Wiggler(document.getElementById("fnshop-modal-content"), document.getElementById("fnshop-modal-content"), true, 2);
+        </script>
+
+</body>
+</html>
