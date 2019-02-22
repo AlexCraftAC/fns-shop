@@ -4,4 +4,4 @@ function renderItems(pReset=true) {
           $("#images").append("<img src=" + f.gallery + ">");
       });
    });
-});
+};
