@@ -235,7 +235,7 @@ NEXT ITEM SHOP: <span id="fnshop-countdown">LOADING...</span>
             {
                 let oReq = new XMLHttpRequest();
                 oReq.addEventListener("load", setShopReq);
-                oReq.open("GET", "https://coolapis.ga/shop.php");
+                oReq.open("GET", "https://fortnite-public-api.theapinetwork.com/prod09/upcoming/get");
                 oReq.send();
             }
 
@@ -294,7 +294,7 @@ NEXT ITEM SHOP: <span id="fnshop-countdown">LOADING...</span>
                     _container.className = "container";
                     let _inner = document.createElement('div');
                     _inner.className = "inner";
-                    _inner.style.backgroundImage='url("' + item.item.gallery + '?")';
+                    _inner.style.backgroundImage='url("' + item.item.images.information + '?")';
                     _container.appendChild(_inner);
                     row.childNodes[rowInd].appendChild(_container);
                     new Wiggler(_container, _inner);
